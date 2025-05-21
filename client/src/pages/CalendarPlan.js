@@ -91,7 +91,7 @@ function CalendarPlan() {
       />
 
       <h2>Set Reminder</h2>
-      <p>Select a date and time:</p>
+      <p>Select a date:</p>
       <DatePicker selected={date} onChange={(date) => setDate(date)} />
       <p>Add title of reminder:</p>
       <input
