@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactCalendar from 'react-calendar';
-import DatePicker from "react-datepicker";
+import DatePicker, { CalendarContainer } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { getTileClassName, getTileContent } from './CalendarTile';
 import './styles/Calendar.css';
@@ -83,14 +83,18 @@ function CalendarPlan() {
 
   return (
     <div>
-      <h1>Calendar</h1>
+  
+      <h1> Responsibility Tracker</h1>
+      <div className = "calendar-container">
       <ReactCalendar
         tileClassName={({date, view}) => getTileClassName(date,view, markedDates)}
         tileContent={({date,view}) => getTileContent(date,view,markedDates)}
         onClickDay={handleCalendarClick}
       />
+      </div>
 
       <h2>Set Reminder</h2>
+      <div className="box">
       <p>Select a date:</p>
       <DatePicker selected={date} onChange={(date) => setDate(date)} />
       <p>Add title of reminder:</p>
@@ -109,6 +113,7 @@ function CalendarPlan() {
         onChange={handleContentChange}
         placeholder="Type here..."
       />
+       {/*
       <p>Recurs:</p>
       <select id="dropdown" value={selectedOption} onChange={handleChange}>
         <option value="Never">Never</option>
@@ -116,8 +121,9 @@ function CalendarPlan() {
         <option value="Weekly">Weekly</option>
         <option value="Monthly">Monthly</option>
       </select>
+      */}
       <button onClick={handleSubmit}>Submit</button>
-
+      
       {modalVisible && (
         <div className="modal-overlay" onClick = {closeModal}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
@@ -128,7 +134,6 @@ function CalendarPlan() {
                   <li key={index}>
                     <strong>{entry.Title}</strong><br />
                     <span>{entry.Content}</span><br />
-                    <em>Recurs: {entry.Occurence}</em>
                   </li>
                 ))}
               </ul>
@@ -140,6 +145,7 @@ function CalendarPlan() {
         </div>
 
       )}
+    </div>
     </div>
   );
 }
